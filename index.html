@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Töbá — Aprende las lenguas indígenas de Panamá</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* btn crear cuenta*/
+.btn-crear-cuenta {
+    display: inline-block;
+    background-color: #ffffff;
+    color: #800000;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-crear-cuenta:hover {
+    background-color: #f0f0f0; 
+}
+/* ============ TOKENS ============ */
+:root{
+  --cream:        #f5f0e0;
+  --cream-deep:   #ece2c6;
+  --ink:          #211a14;
+  --ink-soft:     #5b5246;
+  --brick:        #991919;
+  --brick-deep:   #6b1010;
+  --brick-bright: #c22424;
+  --gold:         #c9a449;
+  --green:        #2d6a4f;
+  --white:        #fffdf8;
+  --line:         rgba(33,26,20,0.12);
+
+  --display: 'Fraunces', serif;
+  --body: 'Inter', sans-serif;
+
+  --container: 1240px;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family: var(--body);
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+img{max-width:100%;display:block;}
+a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--container);margin:0 auto;padding:0 32px;}
+section{position:relative;}
+
+h1,h2,h3,h4{font-family:var(--display); font-weight:600; letter-spacing:-0.01em; color:var(--ink);}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+}
+
+/* ============ MOLA DIVIDER ============ */
+.mola-divider{
+  height: 28px;
+  width: 100%;
+  background:
+    repeating-linear-gradient(135deg,
+      transparent 0 10px,
+      rgba(153,25,25,0.10) 10px 20px),
+    repeating-linear-gradient(45deg,
+      transparent 0 10px,
+      rgba(201,164,73,0.18) 10px 20px);
+  position:relative;
+}
+.mola-divider::before{
+  content:"";
+  position:absolute; inset:0;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--brick) 0 4px,
+    transparent 4px 28px
+  );
+  opacity:.55;
+}
+.mola-divider.flip{ transform: scaleY(-1); }
+
+.mola-frame{
+  border: 3px solid var(--brick);
+  outline: 1px solid var(--gold);
+  outline-offset: 8px;
+  border-radius: 4px;
+}
+
+.diamond{
+  width:9px;height:9px;
+  background:var(--gold);
+  transform:rotate(45deg);
+  display:inline-block;
+  flex-shrink:0;
+}
+
+/* ============ NAV ============ */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background: rgba(245,240,224,0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+nav{
+  max-width: var(--container);
+  margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 18px 32px;
+}
+.logo{
+  display:flex; align-items:center; gap:10px;
+  font-family:var(--display); font-weight:700; font-size:1.5rem;
+  color:var(--brick);
+}
+.logo-mark{
+  width:38px;height:38px;border-radius:50%;
+  background: var(--brick);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cream); font-size:1.1rem;
+  position:relative;
+}
+.logo-mark::after{
+  content:"";
+  position:absolute; inset:4px;
+  border:1.5px solid var(--gold);
+  border-radius:50%;
+}
+.nav-links{display:flex; gap:36px; font-size:0.95rem; font-weight:600;}
+.nav-links a{position:relative; padding:4px 0; color:var(--ink-soft); transition:color .2s;}
+.nav-links a:hover{color:var(--brick);}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:0; height:2px; width:0;
+  background:var(--gold); transition:width .25s;
+}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+  background:var(--brick); color:var(--white);
+  padding:11px 24px; border-radius:30px; font-weight:700; font-size:.92rem;
+  box-shadow: 0 4px 14px rgba(153,25,25,0.3);
+  transition: transform .2s, box-shadow .2s;
+}
+.nav-cta:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(153,25,25,0.4);}
+.menu-toggle{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+.menu-toggle span{width:26px;height:2.5px;background:var(--ink);border-radius:2px;}
+
+/* ============ HERO ============ */
+.hero{
+  padding: 168px 0 0;
+  background: linear-gradient(180deg, var(--cream) 0%, var(--cream) 70%, var(--cream-deep) 100%);
+  overflow:hidden;
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap:48px;
+  align-items:center;
+  padding-bottom: 90px;
+}
+.eyebrow{
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:.8rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--brick); margin-bottom:22px;
+}
+.eyebrow .diamond{background:var(--brick);}
+h1.hero-title{
+  font-size: clamp(2.6rem, 4.6vw, 4.4rem);
+  line-height: 1.04;
+  font-weight: 700;
+  margin-bottom: 26px;
+}
+h1.hero-title em{
+  font-style:italic; font-weight:500; color:var(--brick);
+  font-family:var(--display);
+}
+.hero-sub{
+  font-size:1.13rem; color:var(--ink-soft); max-width:480px; margin-bottom:36px;
+}
+.hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:46px;}
+.btn-primary{
+  background:var(--brick); color:var(--white); padding:17px 34px; border-radius:10px;
+  font-weight:700; font-size:1rem; display:inline-flex; align-items:center; gap:10px;
+  box-shadow:0 10px 26px rgba(153,25,25,0.32);
+  transition: transform .22s, box-shadow .22s;
+  border:none; cursor:pointer;
+}
+.btn-primary:hover{transform:translateY(-3px); box-shadow:0 16px 32px rgba(153,25,25,0.4);}
+.btn-secondary{
+  background:transparent; color:var(--ink); padding:17px 30px; border-radius:10px;
+  font-weight:700; font-size:1rem; border:2px solid var(--ink);
+  display:inline-flex; align-items:center; gap:10px;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.btn-secondary:hover{background:var(--ink); color:var(--cream);}
+
+.hero-stats{display:flex; gap:40px;}
+.hero-stat-num{font-family:var(--display); font-size:2.1rem; font-weight:700; color:var(--brick);}
+.hero-stat-label{font-size:.82rem; color:var(--ink-soft); font-weight:600;}
+
+.hero-visual{position:relative;}
+.hero-card{
+  position:relative;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow: 0 30px 60px -20px rgba(33,26,20,0.35);
+  transform: rotate(1.2deg);
+}
+.hero-card img{height:540px; object-fit:cover; width:100%;}
+.hero-card-overlay{
+  position:absolute; inset:0;
+  background: linear-gradient(180deg, transparent 50%, rgba(33,18,12,.78) 100%);
+}
+.hero-card-caption{
+  position:absolute; left:24px; bottom:24px; right:24px;
+  color:var(--white);
+}
+.hero-card-caption .place{font-weight:700; font-size:1.05rem;}
+.hero-card-caption .lang{font-size:.85rem; opacity:.85; font-style:italic; font-family:var(--display);}
+.float-badge{
+  position:absolute; background:var(--white); border-radius:14px;
+  box-shadow:0 16px 30px -10px rgba(33,26,20,.3);
+  padding:14px 18px; display:flex; align-items:center; gap:12px;
+  font-weight:700; font-size:.88rem;
+}
+.float-badge.b1{ top:-26px; right:-18px; transform:rotate(-3deg); }
+.float-badge.b2{ bottom:-22px; left:-30px; transform:rotate(2deg); }
+.float-badge .ico{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  background:var(--cream-deep);
+}
+
+/* ============ MARQUEE STRIP ============ */
+.marquee-strip{
+  background:var(--brick); color:var(--cream); overflow:hidden;
+  padding:14px 0;
+}
+.marquee-track{
+  display:flex; gap:60px; white-space:nowrap;
+  animation: scroll-left 28s linear infinite;
+  width:max-content;
+}
+@keyframes scroll-left{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+.marquee-track span{
+  font-family:var(--display); font-style:italic; font-weight:500; font-size:1.05rem;
+  display:flex; align-items:center; gap:14px;
+}
+
+/* ============ SECTION HEADERS ============ */
+.section{padding:110px 0;}
+.section.tight{padding:90px 0;}
+.section-head{max-width:680px; margin-bottom:64px;}
+.section-eyebrow{
+  font-size:.78rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--brick); margin-bottom:14px; display:flex; align-items:center; gap:10px;
+}
+h2.section-title{font-size:clamp(2rem, 3.2vw, 2.85rem); line-height:1.12; margin-bottom:18px;}
+.section-desc{color:var(--ink-soft); font-size:1.06rem; max-width:560px;}
+.section-head.center{margin:0 auto 64px; text-align:center;}
+.section-head.center .section-eyebrow{justify-content:center;}
+.section-head.center .section-desc{margin:0 auto;}
+
+/* ============ STATS BAND ============ */
+.stats-band{
+  background:var(--ink); color:var(--cream);
+  padding:70px 0;
+}
+.stats-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:32px; text-align:center;}
+.stats-grid div{border-left:1px solid rgba(245,240,224,0.18); padding-left:28px;}
+.stats-grid div:first-child{border-left:none; padding-left:0;}
+.stat-num{font-family:var(--display); font-size:2.6rem; font-weight:700; color:var(--gold);}
+.stat-label{font-size:.85rem; opacity:.75; margin-top:6px; font-weight:500;}
+
+/* ============ LANGUAGES / COMARCAS ============ */
+.lang-grid{
+  display:grid; grid-template-columns:repeat(3,1fr); gap:28px;
+}
+.lang-card{
+  background:var(--white); border-radius:16px; overflow:hidden;
+  box-shadow:0 18px 40px -16px rgba(33,26,20,0.18);
+  transition: transform .3s, box-shadow .3s;
+  border:1px solid var(--line);
+}
+.lang-card:hover{transform:translateY(-8px); box-shadow:0 26px 50px -16px rgba(33,26,20,0.28);}
+.lang-card-img{height:210px; overflow:hidden; position:relative;}
+.lang-card-img img{height:100%; width:100%; object-fit:cover; transition:transform .5s;}
+.lang-card:hover .lang-card-img img{transform:scale(1.07);}
+.lang-tag{
+  position:absolute; top:16px; left:16px;
+  background:rgba(255,253,248,0.92); color:var(--brick);
+  font-size:.72rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  padding:6px 12px; border-radius:20px;
+}
+.lang-body{padding:26px 24px 28px;}
+.lang-body h3{font-size:1.32rem; margin-bottom:6px;}
+.lang-meta{font-size:.84rem; color:var(--ink-soft); margin-bottom:14px; font-weight:600;}
+.lang-body p{font-size:.93rem; color:var(--ink-soft); margin-bottom:18px;}
+.lang-link{
+  font-weight:700; font-size:.88rem; color:var(--brick);
+  display:inline-flex; align-items:center; gap:6px;
+}
+.lang-link svg{width:14px;height:14px; transition:transform .2s;}
+.lang-card:hover .lang-link svg{transform:translateX(4px);}
+
+/* ============ COURSES ============ */
+.courses-tabs{display:flex; gap:12px; margin-bottom:42px; flex-wrap:wrap;}
+.tab-btn{
+  padding:10px 22px; border-radius:24px; font-weight:700; font-size:.88rem;
+  border:1.5px solid var(--line); background:transparent; color:var(--ink-soft);
+  cursor:pointer; transition:all .2s;
+}
+.tab-btn.active, .tab-btn:hover{background:var(--brick); color:var(--white); border-color:var(--brick);}
+
+.course-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:22px;}
+.course-card{
+  background:var(--white); border-radius:14px; padding:26px 22px;
+  border:1px solid var(--line);
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+.course-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 22px 40px -18px rgba(33,26,20,0.22);
+  border-color: var(--gold);
+}
+.course-level{
+  display:inline-block; font-size:.7rem; font-weight:800; letter-spacing:.05em;
+  text-transform:uppercase; padding:5px 11px; border-radius:14px; margin-bottom:16px;
+}
+.lv-principiante{background:#e3f0e9; color:var(--green);}
+.lv-intermedio{background:#fcefdb; color:#a3681a;}
+.lv-avanzado{background:#fbe4e4; color:var(--brick);}
+.course-card h4{font-size:1.08rem; margin-bottom:10px; line-height:1.3;}
+.course-meta{display:flex; gap:14px; font-size:.78rem; color:var(--ink-soft); margin-bottom:16px; font-weight:600;}
+.course-rating{display:flex; align-items:center; gap:6px; font-size:.85rem; font-weight:700; color:var(--ink);}
+.course-rating .star{color:var(--gold);}
+.progress-track{height:6px; background:var(--cream-deep); border-radius:6px; margin-top:16px; overflow:hidden;}
+.progress-fill{height:100%; background:var(--brick); border-radius:6px;}
+
+/* ============ DICTIONARY DEMO ============ */
+.dict-demo{
+  background:var(--white); border-radius:22px; padding:48px;
+  box-shadow:0 26px 60px -20px rgba(33,26,20,0.2);
+  display:grid; grid-template-columns:1fr 1.3fr; gap:48px; align-items:start;
+}
+.dict-search{
+  display:flex; align-items:center; gap:12px; background:var(--cream);
+  border-radius:12px; padding:16px 20px; margin-bottom:22px; border:1.5px solid var(--line);
+}
+.dict-search input{border:none; background:none; outline:none; font-size:.95rem; width:100%; font-family:var(--body); color:var(--ink);}
+.dict-filters{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+.dict-chip{
+  font-size:.78rem; font-weight:700; padding:7px 14px; border-radius:18px;
+  background:var(--cream); color:var(--ink-soft); border:1px solid var(--line); cursor:pointer; transition: all .2s;
+}
+.dict-chip.on{background:var(--brick); color:var(--white); border-color:var(--brick);}
+.dict-side h3{margin-bottom:10px; font-size:1.3rem;}
+.dict-side p{color:var(--ink-soft); font-size:.95rem; margin-bottom:24px;}
+.dict-list{display:flex; flex-direction:column; gap:10px;}
+.dict-row{
+  display:grid; grid-template-columns: 1fr 1fr 1fr auto; align-items:center; gap:14px;
+  padding:16px 18px; border-radius:10px; background:var(--cream);
+  font-size:.92rem; border:1px solid transparent; transition:border-color .2s, background .2s;
+}
+.dict-row:hover{border-color:var(--gold); background:var(--white);}
+.dict-row .es{font-weight:700;}
+.dict-row .gn{color:var(--brick); font-weight:700; font-family:var(--display); font-style:italic;}
+.dict-row .ph{color:var(--ink-soft); font-size:.85rem;}
+.dict-row .cat{
+  font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.04em;
+  color:var(--green); background:#e3f0e9; padding:5px 10px; border-radius:14px; text-align:center;
+}
+
+/* ============ COMMUNITY ============ */
+.community-section{background:var(--ink); color:var(--cream); position:relative; overflow:hidden;}
+.community-section .section-head h2,
+.community-section .section-eyebrow{color:var(--cream);}
+.community-section .section-eyebrow{color:var(--gold);}
+.community-section .section-desc{color:rgba(245,240,224,0.7);}
+.people-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+.person-card{
+  background:rgba(245,240,224,0.06); border:1px solid rgba(245,240,224,0.14);
+  border-radius:14px; padding:22px; backdrop-filter:blur(4px);
+  transition:transform .25s, background .25s;
+}
+.person-card:hover{transform:translateY(-5px); background:rgba(245,240,224,0.1);}
+.person-top{display:flex; align-items:center; gap:12px; margin-bottom:14px;}
+.avatar{width:48px;height:48px;border-radius:50%; object-fit:cover; border:2px solid var(--gold); background:#ccc; display:flex; align-items:center; justify-content:center; font-weight:bold; color:var(--ink);}
+.person-name{font-weight:700; font-size:.95rem;}
+.person-status{font-size:.75rem; color:#7fd99c; display:flex; align-items:center; gap:5px;}
+.dot-on{width:7px;height:7px;border-radius:50%; background:#7fd99c; display:inline-block;}
+.person-msg{font-size:.85rem; color:rgba(245,240,224,0.75); font-style:italic; line-height:1.45;}
+
+/* ============ TIMELINE / HOW IT WORKS ============ */
+.steps{display:grid; grid-template-columns:repeat(4,1fr); gap:30px; position:relative;}
+.step{position:relative; padding-left:0;}
+.step-num{
+  font-family:var(--display); font-weight:700; font-style:italic; font-size:1.4rem;
+  color:var(--gold); margin-bottom:14px; display:block;
+}
+.step h4{font-size:1.12rem; margin-bottom:10px;}
+.step p{color:var(--ink-soft); font-size:.92rem;}
+.step::after{
+  content:""; position:absolute; top:14px; right:-15px; width:30px; height:1px;
+  background: repeating-linear-gradient(90deg, var(--brick) 0 5px, transparent 5px 9px);
+}
+.step:last-child::after{display:none;}
+
+/* ============ PRICING ============ */
+.pricing-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px; align-items:stretch;}
+.price-card{
+  background:var(--white); border-radius:18px; padding:38px 32px;
+  border:1.5px solid var(--line); display:flex; flex-direction:column;
+  transition:transform .25s, box-shadow .25s;
+}
+.price-card:hover{transform:translateY(-6px); box-shadow:0 22px 44px -18px rgba(33,26,20,0.2);}
+.price-card.featured{
+  background:var(--brick); color:var(--white); border-color:var(--brick);
+  transform:scale(1.03);
+  box-shadow:0 30px 60px -16px rgba(153,25,25,0.45);
+}
+.price-card.featured .price-desc{color:rgba(255,253,248,0.78);}
+.price-card.featured .plan-feat{color:rgba(255,253,248,0.92);}
+.price-card.featured .diamond{background:var(--gold);}
+.price-tag{
+  font-size:.74rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase;
+  margin-bottom:14px; color:var(--brick);
+}
+.price-card.featured .price-tag{color:var(--gold);}
+.price-card h3{font-size:1.4rem; margin-bottom:6px;}
+.price-desc{color:var(--ink-soft); font-size:.88rem; margin-bottom:22px;}
+.price-amount{font-family:var(--display); font-size:2.6rem; font-weight:700; margin-bottom:4px;}
+.price-amount span{font-size:1rem; font-weight:500; opacity:.7;}
+.plan-features{list-style:none; margin:26px 0 30px; display:flex; flex-direction:column; gap:13px; flex:1;}
+.plan-feat{display:flex; gap:10px; align-items:flex-start; font-size:.9rem; color:var(--ink-soft);}
+.price-card .btn-secondary, .price-card .btn-primary{width:100%; justify-content:center;}
+.price-card.featured .btn-secondary{border-color:var(--cream); color:var(--cream);}
+.price-card.featured .btn-secondary:hover{background:var(--cream); color:var(--brick);}
+
+/* ============ TESTIMONIAL / QUOTE BLOCK ============ */
+.quote-block{
+  background:var(--cream-deep);
+  padding:90px 0;
+  text-align:center;
+}
+.quote-block blockquote{
+  font-family:var(--display); font-style:italic; font-weight:500;
+  font-size:clamp(1.5rem, 2.6vw, 2.1rem); max-width:780px; margin:0 auto 26px;
+  line-height:1.4; color:var(--ink);
+}
+.quote-author{font-weight:700; font-size:.95rem;}
+.quote-role{color:var(--ink-soft); font-size:.85rem;}
+
+/* ============ FINAL CTA ============ */
+.final-cta{
+  background: linear-gradient(135deg, var(--brick) 0%, var(--brick-deep) 100%);
+  color:var(--white); text-align:center; padding:110px 0; position:relative; overflow:hidden;
+}
+.final-cta h2{color:var(--white); font-size:clamp(2.2rem,4vw,3.4rem); margin-bottom:20px;}
+.final-cta p{color:rgba(255,253,248,0.82); max-width:560px; margin:0 auto 40px; font-size:1.08rem;}
+.final-cta .btn-primary{background:var(--white); color:var(--brick); box-shadow:0 14px 34px rgba(0,0,0,0.25);}
+.final-cta .btn-primary:hover{box-shadow:0 18px 40px rgba(0,0,0,0.32);}
+.store-badges{display:flex; gap:16px; justify-content:center; margin-top:38px; flex-wrap:wrap;}
+.store-badge{
+  display:flex; align-items:center; gap:10px; background:rgba(255,253,248,0.12);
+  border:1px solid rgba(255,253,248,0.3); padding:12px 22px; border-radius:10px;
+  font-weight:700; font-size:.9rem;
+}
+
+/* ============ FOOTER ============ */
+footer{background:var(--ink); color:rgba(245,240,224,0.7); padding:64px 0 30px;}
+.footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:50px;}
+.footer-logo{display:flex;align-items:center;gap:10px; font-family:var(--display); font-weight:700; font-size:1.3rem; color:var(--cream); margin-bottom:16px;}
+.footer-col h5{color:var(--cream); font-size:.85rem; letter-spacing:.06em; text-transform:uppercase; margin-bottom:18px;}
+.footer-col a{display:block; font-size:.88rem; margin-bottom:11px; transition:color .2s;}
+.footer-col a:hover{color:var(--gold);}
+.footer-bottom{
+  border-top:1px solid rgba(245,240,224,0.12); padding-top:26px;
+  display:flex; justify-content:space-between; font-size:.8rem; flex-wrap:wrap; gap:14px;
+}
+
+/* ============ SCROLL REVEAL ============ */
+.reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.show{opacity:1; transform:translateY(0);}
+
+/* ============ RESPONSIVE ============ */
+@media (max-width: 980px){
+  .hero-inner{grid-template-columns:1fr; padding-bottom:60px;}
+  .hero-card img{height:380px;}
+  .stats-grid, .lang-grid, .course-grid, .pricing-grid, .people-grid, .steps{grid-template-columns:repeat(2,1fr);}
+  .stats-grid div{border-left:none; padding-left:0;}
+  .dict-demo{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:repeat(2,1fr);}
+  .step::after{display:none;}
+}
+@media (max-width: 720px){
+  .nav-links{display:none;}
+  .menu-toggle{display:flex;}
+  .nav-cta{display:none;}
+  .stats-grid, .lang-grid, .course-grid, .pricing-grid, .people-grid, .steps{grid-template-columns:1fr;}
+  .dict-row{grid-template-columns:1fr 1fr; row-gap:8px;}
+  .footer-grid{grid-template-columns:1fr;}
+  h1.hero-title{font-size:2.4rem;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">
+      <span class="logo-mark">T</span> Töbá
+    </a>
+    <div class="nav-links">
+      <a href="#cursos">Cursos</a>
+      <a href="#comarcas">Comarcas</a>
+      <a href="#diccionario">Diccionario</a>
+      <a href="#comunidad">Comunidad</a>
+      <a href="#precios">Planes</a>
+    </div>
+    <a href="#descargar" class="nav-cta">Empezar gratis</a>
+    <button class="menu-toggle" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="eyebrow"><span class="diamond"></span>Lenguas vivas de Panamá</div>
+      <h1 class="hero-title">Aprende a hablar<br><em>Guna, Emberá y Ngäbere</em><br>desde adentro</h1>
+      <p class="hero-sub">Töbá conecta cursos estructurados, un diccionario vivo y comunidades nativas para que aprendas las lenguas indígenas de Panamá con quienes las hablan todos los días.</p>
+      <div class="hero-actions">
+        <a href="#descargar" class="btn-primary">Comenzar a aprender →</a>
+        <a href="#cursos" class="btn-secondary">Ver los cursos</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">500+</div><div class="hero-stat-label">Palabras y frases</div></div>
+        <div><div class="hero-stat-num">20+</div><div class="hero-stat-label">Lecciones guiadas</div></div>
+        <div><div class="hero-stat-num">3</div><div class="hero-stat-label">Comarcas indígenas</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-badge b1"><span class="ico">🏝️</span> 365 islas en Guna Yala</div>
+      <div class="hero-card">
+        <img src="https://images.unsplash.com/photo-1707485318286-c93725c8ec30?w=900&q=80" alt="Islas de Guna Yala">
+        <div class="hero-card-overlay"></div>
+        <div class="hero-card-caption">
+          <div class="place">Guna Yala, San Blas</div>
+          <div class="lang">"Nuedi" — bienvenido en Dulegaya</div>
+        </div>
+      </div>
+      <div class="float-badge b2"><span class="ico">🧵</span> Aprende con las molas</div>
+    </div>
+  </div>
+  <div class="mola-divider"></div>
+</section>
+
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Dulegaya <span class="diamond"></span></span>
+    <span>Ngäbere <span class="diamond"></span></span>
+    <span>Buglere <span class="diamond"></span></span>
+    <span>Emberá <span class="diamond"></span></span>
+    <span>Wounaan <span class="diamond"></span></span>
+    <span>Dulegaya <span class="diamond"></span></span>
+    <span>Ngäbere <span class="diamond"></span></span>
+    <span>Buglere <span class="diamond"></span></span>
+    <span>Emberá <span class="diamond"></span></span>
+    <span>Wounaan <span class="diamond"></span></span>
+  </div>
+</div>
+
+<section class="stats-band">
+  <div class="wrap stats-grid reveal">
+    <div><div class="stat-num">275,000+</div><div class="stat-label">Hablantes nativos en las 3 comarcas</div></div>
+    <div><div class="stat-num">13,691 km²</div><div class="stat-label">Territorio indígena cubierto</div></div>
+    <div><div class="stat-num">8</div><div class="stat-label">Cursos por niveles</div></div>
+    <div><div class="stat-num">100%</div><div class="stat-label">Contenido validado por hablantes</div></div>
+  </div>
+</section>
+
+<section class="section" id="comarcas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow"><span class="diamond"></span>Territorio y cultura</div>
+      <h2 class="section-title">Cada lengua vive en un lugar</h2>
+      <p class="section-desc">No aprendes palabras sueltas: aprendes la geografía, la historia y las tradiciones de la comarca donde esa lengua nació y sigue viva.</p>
+    </div>
+    <div class="lang-grid reveal">
+
+      <div class="lang-card">
+        <div class="lang-card-img">
+          <span class="lang-tag">Caribe</span>
+          <img src="https://images.unsplash.com/photo-1707485318286-c93725c8ec30?w=700&q=80" alt="Guna Yala">
+        </div>
+        <div class="lang-body">
+          <h3>Comarca Guna Yala</h3>
+          <div class="lang-meta">~65,000 hablantes · Dulegaya</div>
+          <p>Guardianes de 365 islas paradisíacas, célebres por el arte textil de las molas y un sistema de autogobierno vigente desde 1938.</p>
+          <a class="lang-link" href="#cursos">Explorar cursos de Guna <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="lang-card">
+        <div class="lang-card-img">
+          <span class="lang-tag">Darién</span>
+          <img src="https://images.unsplash.com/photo-1639935187474-10940c5be350?w=700&q=80" alt="Emberá-Wounaan">
+        </div>
+        <div class="lang-body">
+          <h3>Comarca Emberá-Wounaan</h3>
+          <div class="lang-meta">~10,000 hablantes · Emberá / Wounaan</div>
+          <p>Pueblos de la selva más densa de Panamá, maestros de la cestería wërrëgara y guardianes del conocimiento botánico de los jaibanás.</p>
+          <a class="lang-link" href="#cursos">Explorar cursos de Emberá <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="lang-card">
+        <div class="lang-card-img">
+          <span class="lang-tag">Cordillera</span>
+          <img src="https://images.unsplash.com/photo-1734278998705-6a2509772e8c?w=700&q=80" alt="Ngäbe-Buglé">
+        </div>
+        <div class="lang-body">
+          <h3>Comarca Ngäbe-Buglé</h3>
+          <div class="lang-meta">~200,000 hablantes · Ngäbere / Buglere</div>
+          <p>La comarca más extensa y poblada de Panamá, con montañas sagradas, agricultura de terraza y el ritual comunitario de la balsería.</p>
+          <a class="lang-link" href="#cursos">Explorar cursos de Ngäbe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="mola-divider"></div>
+
+<section class="section" id="cursos" style="background:var(--cream-deep);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow"><span class="diamond"></span>Ruta de aprendizaje</div>
+      <h2 class="section-title">Cursos pensados por nivel, no por suerte</h2>
+      <p class="section-desc">De los primeros sonidos del alfabeto Guna hasta la gramática avanzada y la pedagogía para enseñarla. Cada curso fue diseñado junto a hablantes nativos.</p>
+    </div>
+
+    <div class="courses-tabs reveal">
+      <button class="tab-btn active" data-level="todos">Todos</button>
+      <button class="tab-btn" data-level="principiante">Principiante</button>
+      <button class="tab-btn" data-level="intermedio">Intermedio</button>
+      <button class="tab-btn" data-level="avanzado">Avanzado</button>
+    </div>
+
+    <div class="course-grid reveal">
+      <div class="course-card" data-level="principiante">
+        <span class="course-level lv-principiante">Principiante</span>
+        <h4>Guna para Principiantes — Nivel 1</h4>
+        <div class="course-meta"><span>8 semanas</span><span>32 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 4.9 <span style="color:var(--ink-soft); font-weight:500;">(245)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="course-card" data-level="principiante">
+        <span class="course-level lv-principiante">Principiante</span>
+        <h4>Guna para Principiantes — Nivel 2</h4>
+        <div class="course-meta"><span>8 semanas</span><span>32 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 4.8 <span style="color:var(--ink-soft); font-weight:500;">(189)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="course-card" data-level="intermedio">
+        <span class="course-level lv-intermedio">Intermedio</span>
+        <h4>Conversación en Guna — Nivel Intermedio</h4>
+        <div class="course-meta"><span>10 semanas</span><span>40 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 4.9 <span style="color:var(--ink-soft); font-weight:500;">(156)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="course-card" data-level="intermedio">
+        <span class="course-level lv-intermedio">Intermedio</span>
+        <h4>Cultura y Lengua Guna — Intermedio</h4>
+        <div class="course-meta"><span>10 semanas</span><span>40 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 4.8 <span style="color:var(--ink-soft); font-weight:500;">(134)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="course-card" data-level="avanzado">
+        <span class="course-level lv-avanzado">Avanzado</span>
+        <h4>Literatura Oral Guna — Avanzado</h4>
+        <div class="course-meta"><span>12 semanas</span><span>48 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 5.0 <span style="color:var(--ink-soft); font-weight:500;">(87)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="course-card" data-level="avanzado">
+        <span class="course-level lv-avanzado">Avanzado</span>
+        <h4>Cantos Ceremoniales Guna — Avanzado</h4>
+        <div class="course-meta"><span>12 semanas</span><span>48 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 4.9 <span style="color:var(--ink-soft); font-weight:500;">(76)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="course-card" data-level="avanzado">
+        <span class="course-level lv-avanzado">Avanzado</span>
+        <h4>Gramática Avanzada del Guna</h4>
+        <div class="course-meta"><span>10 semanas</span><span>40 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 4.8 <span style="color:var(--ink-soft); font-weight:500;">(65)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+      <div class="course-card" data-level="avanzado">
+        <span class="course-level lv-avanzado">Avanzado</span>
+        <h4>Pedagogía y Enseñanza del Guna</h4>
+        <div class="course-meta"><span>10 semanas</span><span>40 lecciones</span></div>
+        <div class="course-rating"><span class="star">★</span> 4.9 <span style="color:var(--ink-soft); font-weight:500;">(42)</span></div>
+        <div class="progress-track"><div class="progress-fill" style="width:0%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="mola-divider flip"></div>
+
+<section class="section" id="diccionario">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow"><span class="diamond"></span>Vocabulario vivo</div>
+      <h2 class="section-title">Diccionario interactivo</h2>
+      <p class="section-desc">Busca palabras en tiempo real, escucha su pronunciación exacta grabada por nativos y comprende su contexto cultural.</p>
+    </div>
+
+    <div class="dict-demo reveal">
+      <div class="dict-side">
+        <h3>Explora el buscador</h3>
+        <p>Filtrado por comarca o categorías cotidianas para facilitar tu aprendizaje diario.</p>
+        <div class="dict-search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink-soft)" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="dict-input" placeholder="Busca 'hola', 'gracias', 'tierra'..." aria-label="Buscar palabras">
+        </div>
+        <div class="dict-filters">
+          <span class="dict-chip on" data-lang="todos">Todos</span>
+          <span class="dict-chip" data-lang="guna">Guna (Dulegaya)</span>
+          <span class="dict-chip" data-lang="embera">Emberá</span>
+          <span class="dict-chip" data-lang="ngabe">Ngäbere</span>
+        </div>
+      </div>
+
+      <div class="dict-list">
+        <div class="dict-row" data-lang="guna">
+          <span class="es">Hola / ¿Cómo estás?</span>
+          <span class="gn">Nuedi</span>
+          <span class="ph">[nweh-dee]</span>
+          <span class="cat">Saludo</span>
+        </div>
+        <div class="dict-row" data-lang="guna">
+          <span class="es">Gracias</span>
+          <span class="gn">Dotnuet</span>
+          <span class="ph">[dot-nwet]</span>
+          <span class="cat">Cortesía</span>
+        </div>
+        <div class="dict-row" data-lang="guna">
+          <span class="es">Tierra / Madre Tierra</span>
+          <span class="gn">Nabguana</span>
+          <span class="ph">[nahb-gwah-nah]</span>
+          <span class="cat">Naturaleza</span>
+        </div>
+        <div class="dict-row" data-lang="guna">
+          <span class="es">Hermoso / Bonito</span>
+          <span class="gn">Yeegi</span>
+          <span class="ph">[yeh-eh-ghee]</span>
+          <span class="cat">Adjetivo</span>
+        </div>
+        <div class="dict-row" data-lang="embera">
+          <span class="es">Hola (¿Cómo estás?)</span>
+          <span class="gn">¿Kua mürã?</span>
+          <span class="ph">[kwa muer-ah]</span>
+          <span class="cat">Saludo</span>
+        </div>
+        <div class="dict-row" data-lang="ngabe">
+          <span class="es">Buenos días</span>
+          <span class="gn">Kwe mënika</span>
+          <span class="ph">[kweh muh-nee-kah]</span>
+          <span class="cat">Saludo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section community-section" id="comunidad">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="section-eyebrow"><span class="diamond"></span>Intercambio real</div>
+      <h2 class="section-title">Comunidad de aprendizaje</h2>
+      <p class="section-desc">Conéctate con estudiantes de todo el mundo y habla directamente con tutores y hablantes nativos verificados.</p>
+    </div>
+
+    <div class="people-grid reveal">
+      <div class="person-card">
+        <div class="person-top">
+          <div class="avatar">O</div>
+          <div>
+            <div class="person-name">Ologuagdi S.</div>
+            <div class="person-status"><span class="dot-on"></span> Tutor Guna</div>
+          </div>
+        </div>
+        <p class="person-msg">"¡Nuedi! Me encanta ver cómo personas de la ciudad se interesan por mantener vivas nuestras historias a través del Dulegaya."</p>
+      </div>
+
+      <div class="person-card">
+        <div class="person-top">
+          <div class="avatar">E</div>
+          <div>
+            <div class="person-name">Elena C.</div>
+            <div class="person-status"><span class="dot-on"></span> Estudiante</div>
+          </div>
+        </div>
+        <p class="person-msg">"El curso de Emberá Nivel 1 me ayudó muchísimo antes de mi viaje de investigación a Darién. Las lecciones de botánica son increíbles."</p>
+      </div>
+
+      <div class="person-card">
+        <div class="person-top">
+          <div class="avatar">K</div>
+          <div>
+            <div class="person-name">Kabra Y.</div>
+            <div class="person-status"><span class="dot-on"></span> Hablante Ngäbe</div>
+          </div>
+        </div>
+        <p class="person-msg">"Es la primera vez que veo una aplicación que respeta la fonética de nuestras montañas de forma tan exacta. ¡Buen trabajo!"</p>
+      </div>
+
+      <div class="person-card">
+        <div class="person-top">
+          <div class="avatar">M</div>
+          <div>
+            <div class="person-name">Mateo R.</div>
+            <div class="person-status"><span class="dot-on"></span> Estudiante</div>
+          </div>
+        </div>
+        <p class="person-msg">"Los repasos diarios con el sistema de tarjetas interactivas hacen que recordar el vocabulario sea súper natural."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="pasos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="section-eyebrow"><span class="diamond"></span>Tu camino</div>
+      <h2 class="section-title">Cómo funciona Töbá</h2>
+      <p class="section-desc">Un método diseñado para respetar la tradición oral mientras aprovechas herramientas pedagógicas modernas.</p>
+    </div>
+
+    <div class="steps reveal">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h4>Elige tu Comarca</h4>
+        <p>Selecciona la lengua e imágnate el territorio que vas a explorar a través de sus palabras.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h4>15 minutos al día</h4>
+        <p>Lecciones cortas de audio, gramática visual y ejercicios de pronunciación nativa.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h4>Conversación guiada</h4>
+        <p>Únete a salas de voz comunitarias para perder el miedo y practicar con fluidez real.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">04</span>
+        <h4>Impacto cultural</h4>
+        <p>Parte de tu suscripción financia directamente proyectos educativos en escuelas comarcales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="precios" style="background: var(--cream-deep);">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <div class="section-eyebrow"><span class="diamond"></span>Inversión cultural</div>
+      <h2 class="section-title">Planes a tu medida</h2>
+      <p class="section-desc">Accede a contenido premium y ayuda de forma directa a la preservación lingüística de Panamá.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+      <div class="price-card">
+        <div class="price-tag">Básico</div>
+        <h3>Plan Semilla</h3>
+        <p class="price-desc">Ideal para curiosos y entusiastas de la cultura local.</p>
+        <div class="price-amount">$0 <span>/ siempre gratis</span></div>
+        <ul class="plan-features">
+          <li class="plan-feat"><span class="diamond"></span> Acceso a lecciones de Nivel 1</li>
+          <li class="plan-feat"><span class="diamond"></span> Diccionario interactivo básico</li>
+          <li class="plan-feat"><span class="diamond"></span> Soporte comunitario público</li>
+        </ul>
+        <a href="#descargar" class="btn-secondary">Empezar gratis</a>
+      </div>
+
+      <div class="price-card featured">
+        <div class="price-tag">Recomendado</div>
+        <h3>Plan Raíces</h3>
+        <p class="price-desc">Para quienes buscan fluidez y comprensión cultural profunda.</p>
+        <div class="price-amount">$9.99 <span>/ mes</span></div>
+        <ul class="plan-features">
+          <li class="plan-feat"><span class="diamond"></span> Acceso a todos los niveles de las 3 comarcas</li>
+          <li class="plan-feat"><span class="diamond"></span> Audios HD de pronunciación nativa descárgables</li>
+          <li class="plan-feat"><span class="diamond"></span> Salas de conversación semanales con tutores</li>
+          <li class="plan-feat"><span class="diamond"></span> Certificados validados por líderes comunitarios</li>
+        </ul>
+        <a href="#descargar" class="btn-primary">Suscribirme ahora →</a>
+      </div>
+
+      <div class="price-card">
+        <div class="price-tag">Institucional</div>
+        <h3>Plan Guardianes</h3>
+        <p class="price-desc">Para escuelas, ONGs, investigadores y empresas de turismo.</p>
+        <div class="price-amount">$39.99 <span>/ mes</span></div>
+        <ul class="plan-features">
+          <li class="plan-feat"><span class="diamond"></span> Cuentas multiusuario ilimitadas</li>
+          <li class="plan-feat"><span class="diamond"></span> Talleres interactivos personalizados vía Zoom</li>
+          <li class="plan-feat"><span class="diamond"></span> Acceso exclusivo a cantos y literatura oral avanzada</li>
+          <li class="plan-feat"><span class="diamond"></span> Reportes de impacto cultural directo</li>
+        </ul>
+        <a href="#contacto" class="btn-secondary">Contactar soporte</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="quote-block">
+  <div class="wrap reveal">
+    <blockquote>
+      "Aprender la lengua de un pueblo es la única llave legítima para comprender su cosmovisión y salvaguardar su legado ante el futuro."
+    </blockquote>
+    <div class="quote-author">Líder Cultural Indígena</div>
+    <div class="quote-role">Congreso General Guna Yala</div>
+  </div>
+</section>
+
+<section class="final-cta" id="descargar">
+  <div class="wrap reveal">
+    <h2>Empieza a hablar hoy mismo</h2>
+    <p>Únete a miles de personas que ya están reconectando con las raíces lingüísticas de Panamá. Disponible en web y móvil.</p>
+    <a href="form.html" class="btn-primary">Crear cuenta gratis</a>
+    
+    <div class="store-badges">
+      <div class="store-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 12.5c0-2.8 2.3-4.2 2.4-4.3-1.3-1.9-3.3-2.1-4-2.2-1.7-.2-3.4.9-4.3.9-.9 0-2.2-.9-3.6-.9-1.8 0-3.5 1-4.4 2.6-1.9 3.3-.5 8.2 1.4 10.9.9 1.3 2 2.8 3.4 2.7 1.4-.1 1.9-.9 3.5-.9s2.1.9 3.6.9c1.5 0 2.4-1.3 3.3-2.7.9-1.4 1.3-2.8 1.3-2.9-.1 0-2.6-1-2.6-3.8zm-2.8-8.4c.8-1 1.3-2.4 1.1-3.7-1.1.1-2.5.7-3.3 1.7-.7.8-1.3 2.2-1.1 3.5 1.2.1 2.5-.6 3.3-1.5z"/></svg>
+        App Store
+      </div>
+      <div class="store-badge">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 2.4c-.2.2-.3.6-.3 1v17.2c0 .4.1.8.3 1l9.6-9.6L3.6 2.4zM14.2 12l3.4-3.4L4.8 2c-.3-.2-.6-.2-.8 0l10.2 10zm4.4-.8c.4.2.6.5.6.8s-.2.6-.6.8l-2.4 1.4-2.6-2.6 2.6-2.6 2.4 1.4zM4.8 22l12.8-6.6-3.4-3.4-9.4 10c.2.2.5.2.8 0z"/></svg>
+        Google Play
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="logo-mark" style="background:var(--gold); color:var(--ink);">T</span> Töbá
+        </div>
+        <p style="font-size: .88rem; line-height: 1.6; margin-bottom: 20px;">Plataforma dedicada a la enseñanza, revitalización y difusión de las lenguas nativas y culturas indígenas de Panamá.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Cursos</h5>
+        <a href="#cursos">Dulegaya (Guna)</a>
+        <a href="#cursos">Emberá</a>
+        <a href="#cursos">Ngäbere</a>
+        <a href="#cursos">Wounaan</a>
+      </div>
+      <div class="footer-col">
+        <h5>Comunidad</h5>
+        <a href="#comarcas">Comarcas</a>
+        <a href="#comunidad">Historias de Éxito</a>
+        <a href="#precios">Planes de Estudio</a>
+        <a href="#voluntarios">Voluntariado</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal & Alianzas</h5>
+        <a href="#terminos">Términos de Uso</a>
+        <a href="#privacidad">Política de Privacidad</a>
+        <a href="#congresos">Acreditación Cultural</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>&copy; 2026 Töbá Panamá. Todos los derechos reservados.</div>
+      <div style="display:flex; gap:16px;">
+        <a href="#fb" aria-label="Facebook">FB</a>
+        <a href="#ig" aria-label="Instagram">IG</a>
+        <a href="#tw" aria-label="Twitter">TW</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // 1. ANIMACIÓN SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('show');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+
+  // 2. FILTRO DINÁMICO DE CURSOS POR NIVEL
+  const courseButtons = document.querySelectorAll('.tab-btn');
+  const courseCards = document.querySelectorAll('.course-card');
+
+  courseButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      courseButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      const targetLevel = button.getAttribute('data-level');
+
+      courseCards.forEach(card => {
+        const cardLevel = card.getAttribute('data-level');
+        if (targetLevel === 'todos' || cardLevel === targetLevel) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+
+  // 3. FILTRO CRUZADO DEL DICCIONARIO (BUSCADOR + CHIPS)
+  const dictInput = document.getElementById('dict-input');
+  const dictChips = document.querySelectorAll('.dict-chip');
+  const dictRows = document.querySelectorAll('.dict-row');
+
+  let currentLangFilter = 'todos';
+
+  function filterDictionary() {
+    const searchText = dictInput.value.toLowerCase().trim();
+
+    dictRows.forEach(row => {
+      const rowLang = row.getAttribute('data-lang');
+      const esText = row.querySelector('.es').textContent.toLowerCase();
+      const nativeText = row.querySelector('.gn').textContent.toLowerCase();
+      const catText = row.querySelector('.cat').textContent.toLowerCase();
+
+      const matchesLang = (currentLangFilter === 'todos' || rowLang === currentLangFilter);
+      const matchesSearch = (esText.includes(searchText) || nativeText.includes(searchText) || catText.includes(searchText));
+
+      if (matchesLang && matchesSearch) {
+        row.style.display = 'grid'; 
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  }
+
+  dictChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      dictChips.forEach(c => c.classList.remove('on'));
+      chip.classList.add('on');
+
+      currentLangFilter = chip.getAttribute('data-lang');
+      filterDictionary();
+    });
+  });
+
+  dictInput.addEventListener('input', filterDictionary);
+</script>
+
+</body>
+</html>
